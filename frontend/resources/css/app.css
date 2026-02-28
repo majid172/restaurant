@@ -1,0 +1,256 @@
+@import 'tailwindcss';
+
+@theme {
+    --color-gold: #c19d60;
+    --color-gold-light: #d1b480;
+    --color-gold-dark: #a88548;
+    --color-forest-dark: #0b1a16;
+    --color-forest-light: #122823;
+    --color-brown-dark: #2d2723;
+    --color-brown-darker: #1e1e1e;
+    --color-cream: #faf7f2;
+    --color-cream-light: #ffffff;
+    --color-text-muted: #696969;
+    --font-heading: 'Oswald', sans-serif;
+    --font-script: 'Great Vibes', cursive;
+    --font-body: 'Poppins', sans-serif;
+}
+
+/* ═══ BASE STYLES ═══ */
+body {
+    font-family: var(--font-body);
+    color: #333;
+    background-color: #ffffff;
+    background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ═══ TORN EDGE DIVIDERS ═══ */
+.torn-edge-bottom {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,120V60l15,5c10,3,30,12,50,8s40-15,60-12,40,18,60,15,40-18,60-22,40,2,60,10,40,25,60,28,40-8,60-20,40-25,60-22,40,15,60,20,40,5,60-5,40-25,60-22,40,12,60,15,40-5,60-15,40-20,60-18,40,8,60,12,40-2,60-12,40-25,60-22,40,18,60,20,40-5,60-15s40-20,60-22c20-2,40,10,50,15l15,8v42H0z' fill='%23ffffff'/%3E%3Cpath d='M0,62l15,5c10,3,30,12,50,8s40-15,60-12,40,18,60,15,40-18,60-22,40,2,60,10,40,25,60,28,40-8,60-20,40-25,60-22,40,15,60,20,40,5,60-5,40-25,60-22,40,12,60,15,40-5,60-15,40-20,60-18,40,8,60,12,40-2,60-12,40-25,60-22,40,18,60,20,40-5,60-15s40-20,60-22c20-2,40,10,50,15l15,8' fill='none' stroke='%230000000a' stroke-width='2'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.torn-edge-bottom-cream {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C150,80 300,20 450,60 C600,100 750,40 900,80 C1050,120 1200,40 1200,40 L1200,120 L0,120 Z' fill='%23f4f2ed'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.torn-edge-top {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0v60l15-5c10-3,30-12,50-8s40,15,60,12,40-18,60-15,40,18,60,22,40-2,60-10,40-25,60-28,40,8,60,20,40,25,60,22,40-15,60-20,40-5,60,5,40,25,60,22,40-12,60-15,40,5,60,15,40,20,60,18,40-8,60-12,40,2,60,12,40,25,60,22,40-18,60-20,40,5,60,15s40,20,60,22c20,2,40-10,50-15l15-8V0H0z' fill='%23ffffff'/%3E%3Cpath d='M0,58l15-5c10-3,30-12,50-8s40,15,60,12,40-18,60-15,40,18,60,22,40-2,60-10,40-25,60-28,40,8,60,20,40,25,60,22,40-15,60-20,40-5,60,5,40,25,60,22,40-12,60-15,40,5,60,15,40,20,60,18,40-8,60-12,40,2,60,12,40,25,60,22,40-18,60-20,40,5,60,15s40,20,60,22c20,2,40-10,50-15l15-8' fill='none' stroke='%230000000a' stroke-width='2'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+/* ═══ SKETCH TEXTURE ═══ */
+.sketch-bg {
+    background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+}
+
+/* ═══ ANIMATIONS ═══ */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out both;
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.6s ease-out both;
+}
+
+.animate-scale-in {
+    animation: scaleIn 0.6s ease-out both;
+}
+
+.animate-slide-left {
+    animation: slideInLeft 0.8s ease-out both;
+}
+
+.animate-slide-right {
+    animation: slideInRight 0.8s ease-out both;
+}
+
+.delay-100 {
+    animation-delay: 0.1s;
+}
+
+.delay-200 {
+    animation-delay: 0.2s;
+}
+
+.delay-300 {
+    animation-delay: 0.3s;
+}
+
+.delay-400 {
+    animation-delay: 0.4s;
+}
+
+.delay-500 {
+    animation-delay: 0.5s;
+}
+
+/* ═══ SPICINESS INDICATORS ═══ */
+.spice-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #e74c3c;
+}
+
+.spice-dot.mild {
+    background: #f39c12;
+}
+
+.spice-dot.empty {
+    background: #e0e0e0;
+}
+
+/* ═══ SCROLLBAR ═══ */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-gold);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-gold-dark);
+}
+
+/* ═══ DIETARY BADGES ═══ */
+.badge-vegan {
+    background: #27ae60;
+    color: white;
+}
+
+.badge-vegetarian {
+    background: #2ecc71;
+    color: white;
+}
+
+.badge-gluten-free {
+    background: #e67e22;
+    color: white;
+}
+
+.badge-halal {
+    background: #3498db;
+    color: white;
+}
+
+/* ═══ MENU SECTION UTILITIES ═══ */
+.menu-arched-frame {
+    border-top-left-radius: 50% 100%;
+    border-top-right-radius: 50% 100%;
+    border: 2px solid var(--color-gold);
+    padding: 15px;
+}
+
+.menu-item-dotted {
+    flex-grow: 1;
+    border-bottom: 2px dotted rgba(193, 157, 96, 0.4);
+    margin-bottom: 5px;
+}
+
+.forest-texture {
+    background-image: url('https://www.transparenttextures.com/patterns/dark-matter.png');
+    background-repeat: repeat;
+}
+
+.active-tab-gold {
+    border-bottom: 2px solid var(--color-gold);
+    color: var(--color-gold) !important;
+}
+
+.decoration-dots {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.decoration-dot {
+    width: 20px;
+    height: 1px;
+    background: rgba(193, 157, 96, 0.2);
+}
