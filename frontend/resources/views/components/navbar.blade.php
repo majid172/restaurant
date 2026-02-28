@@ -38,49 +38,49 @@
              x-data="{ mobileOpen: false }">
 
             {{-- Left Links --}}
-            <div class="flex items-center w-1/2 relative pr-12 lg:pr-20 h-full">
+            <div class="flex items-center w-[45%] lg:w-[40%] justify-end pr-16 lg:pr-24 h-full relative">
                 <button @click="mobileOpen = !mobileOpen"
-                        class="md:hidden flex flex-col justify-center items-center gap-1.5 text-white hover:text-gold absolute left-4 w-8 h-8 group transition-all duration-300">
-                    <span class="block h-[1px] w-5 bg-current transition-all duration-300 group-hover:bg-gold"></span>
-                    <span class="block h-[1px] w-7 bg-current transition-all duration-300 group-hover:bg-gold"></span>
-                    <span class="block h-[1px] w-5 bg-current transition-all duration-300 group-hover:bg-gold"></span>
+                        class="md:hidden flex flex-col justify-center items-center gap-1.5 text-white hover:text-[#c8a98a] absolute left-4 w-8 h-8 group transition-all duration-300">
+                    <span class="block h-[1px] w-5 bg-current transition-all duration-300 group-hover:bg-[#c8a98a]"></span>
+                    <span class="block h-[1px] w-7 bg-current transition-all duration-300 group-hover:bg-[#c8a98a]"></span>
+                    <span class="block h-[1px] w-5 bg-current transition-all duration-300 group-hover:bg-[#c8a98a]"></span>
                 </button>
 
-                <ul class="hidden md:flex items-center gap-6 lg:gap-10 text-white font-heading text-[11px] font-bold uppercase tracking-[0.2em]">
-                    <li><a href="/" wire:navigate class="hover:text-gold transition-colors text-gold flex items-center gap-2"><i class="fa-solid fa-mug-hot text-[10px]"></i> Home</a></li>
-                    <li><a href="/menu" wire:navigate class="hover:text-gold transition-colors">Menu</a></li>
-                    <li><a href="/reservation" wire:navigate class="hover:text-gold transition-colors">Reservation</a></li>
+                <ul class="hidden md:flex items-center gap-6 lg:gap-10 text-white font-bold text-[10px] uppercase tracking-[0.2em]" style="font-family: 'Oswald', sans-serif;">
+                    <li><a href="/" wire:navigate class="hover:text-[#c8a98a] transition-colors text-[#c8a98a] flex items-center gap-2"><i class="fa-solid fa-mug-hot text-[10px]"></i> Home</a></li>
+                    <li><a href="/menu" wire:navigate class="hover:text-[#c8a98a] transition-colors">Menu</a></li>
+                    <li><a href="/reservation" wire:navigate class="hover:text-[#c8a98a] transition-colors">Reservation</a></li>
                 </ul>
             </div>
 
             {{-- Centered Logo --}}
             <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 transition-all duration-500">
                 <a href="/" wire:navigate 
-                   class="bg-[#faf7f2] rounded-full p-2 flex flex-col items-center justify-center shadow-2xl border-4 border-brown-dark transition-all duration-500 hover:scale-105"
+                   class="bg-[#fdfbf7] rounded-full p-2 flex flex-col items-center justify-center shadow-2xl border-[6px] border-[#2b2522] transition-all duration-500 hover:scale-105"
                    :class="scrolled ? 'w-20 h-20' : 'w-28 h-28'">
                     
-                    <i class="fa-solid fa-mug-hot text-brown-dark transition-all duration-500"
+                    <i class="fa-solid fa-mug-hot text-[#2b2522] transition-all duration-500"
                        :class="scrolled ? 'text-2xl mb-0' : 'text-4xl mb-1'"></i>
                     
-                    <span class="font-heading text-brown-dark font-bold text-[9px] uppercase tracking-widest leading-tight text-center transition-all duration-500"
-                          :class="scrolled ? 'hidden' : 'block'">
+                    <span class="font-bold text-[#2b2522] text-[9px] uppercase tracking-widest leading-none text-center transition-all duration-500 mt-1"
+                          :class="scrolled ? 'hidden' : 'block'" style="font-family: 'Oswald', sans-serif;">
                         Love Curry<br>Shop
                     </span>
                 </a>
             </div>
 
             {{-- Right Links --}}
-            <div class="flex items-center w-1/2 relative pl-12 lg:pl-20 h-full">
-                <ul class="hidden md:flex items-center gap-6 lg:gap-10 text-white font-heading text-[11px] font-bold uppercase tracking-[0.2em] w-full justify-center">
-                    <li><a href="/pages" wire:navigate class="hover:text-gold transition-colors">Pages</a></li>
-                    <li><a href="/blog" wire:navigate class="hover:text-gold transition-colors">Blog</a></li>
-                    <li><a href="/contact" wire:navigate class="hover:text-gold transition-colors">Contact</a></li>
+            <div class="flex items-center w-[45%] lg:w-[40%] justify-start pl-16 lg:pl-24 h-full relative">
+                <ul class="hidden md:flex items-center gap-6 lg:gap-10 text-white font-bold text-[10px] uppercase tracking-[0.2em]" style="font-family: 'Oswald', sans-serif;">
+                    <li><a href="/pages" wire:navigate class="hover:text-[#c8a98a] transition-colors">Pages</a></li>
+                    <li><a href="/blog" wire:navigate class="hover:text-[#c8a98a] transition-colors">Blog</a></li>
+                    <li><a href="/contact" wire:navigate class="hover:text-[#c8a98a] transition-colors">Contact</a></li>
                 </ul>
-                <div class="flex items-center gap-6 text-white absolute right-8">
-                    <button class="hover:text-gold transition-colors"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    <button class="relative hover:text-gold transition-colors">
-                        <i class="fa-solid fa-bag-shopping"></i>
-                        <span class="absolute -top-2 -right-2 bg-gold text-white text-[10px] rounded-full w-4 h-4 flex items-center justify-center shadow-lg">3</span>
+                <div class="flex items-center gap-5 text-white absolute right-6">
+                    <button class="hover:text-[#c8a98a] transition-colors"><i class="fa-solid fa-magnifying-glass text-sm"></i></button>
+                    <button class="relative hover:text-[#c8a98a] transition-colors">
+                        <i class="fa-solid fa-bag-shopping text-sm"></i>
+                        <span class="absolute -top-2 -right-2 bg-[#c8a98a] text-white text-[9px] font-bold rounded-full w-4 h-4 flex items-center justify-center shadow-md">3</span>
                     </button>
                 </div>
             </div>

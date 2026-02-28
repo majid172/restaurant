@@ -1,699 +1,407 @@
-@php
-    $locale = app()->getLocale();
-@endphp
+<div class="w-full font-sans text-gray-800 antialiased selection:bg-amber-500 selection:text-white">
 
-<div class="w-full">
-    {{-- ═══ HERO SECTION (Basilico Centered Layout) ═══ --}}
-    <section class="relative min-h-screen flex flex-col justify-center items-center text-center overflow-hidden" 
-             x-data="{ activeSlide: 1, auto: null }"
-             x-init="auto = setInterval(() => { activeSlide = activeSlide < 3 ? activeSlide + 1 : 1 }, 7000)">
-        
-        {{-- Background Image with Gradient Overlay --}}
+    {{-- HERO SECTION --}}
+    <section class="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden bg-[#1c1d1f]">
+        {{-- Background Image with Dark Overlay --}}
         <div class="absolute inset-0 z-0">
-            <template x-if="activeSlide === 1">
-                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
-                     class="w-full h-full object-cover transition-opacity duration-1000"
-                     x-transition:enter="opacity-0 scale-105"
-                     x-transition:enter-end="opacity-100 scale-100">
-            </template>
-            <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-forest/60"></div>
+            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2047&auto=format&fit=crop" alt="Coffee Shop Barista" class="w-full h-full object-cover origin-center opacity-40">
+            <div class="absolute inset-0 bg-black/60"></div>
         </div>
 
-        {{-- Content --}}
-        <div class="relative z-10 px-4 max-w-5xl mx-auto -mt-10">
-            <div x-show="activeSlide === 1" 
-                 x-transition:enter="transition ease-out duration-1000 transform scale-95 opacity-0" 
-                 x-transition:enter-end="scale-100 opacity-100">
-                
-                <div class="flex items-center justify-center gap-4 mb-6 animate-fade-in opacity-0" style="animation-fill-mode: forwards;">
-                    <div class="w-12 h-[1px] bg-gold-premium/50"></div>
-                    <h3 class="font-script text-gold-premium text-4xl md:text-5xl">Authentic Indian Flavors</h3>
-                    <div class="w-12 h-[1px] bg-gold-premium/50"></div>
-                </div>
-                
-                <h1 class="font-heading text-white text-6xl md:text-8xl font-bold uppercase tracking-tight mb-8 leading-[0.9] drop-shadow-2xl">
-                    Culinary <span class="text-gold">Masterpieces</span><br>For Your Soul
-                </h1>
-                
-                <p class="text-gray-300 max-w-2xl mx-auto mb-12 text-base md:text-lg leading-relaxed font-body opacity-80">
-                    Step into a world where tradition meets luxury. Love Curry brings you centuries of culinary heritage, redefined for the modern palate.
-                </p>
 
-                <div class="flex flex-col sm:flex-row gap-6 justify-center">
-                    <a href="/menu" wire:navigate
-                        class="bg-gold hover:bg-gold-dark text-white font-heading font-bold uppercase tracking-[0.3em] text-[12px] px-12 py-5 rounded-sm transition-all shadow-gold hover:scale-105 transform">
-                        Explore Full Menu
-                    </a>
-                    <a href="/contact" wire:navigate
-                        class="bg-transparent hover:bg-white text-white hover:text-forest border border-white/30 hover:border-white font-heading font-bold uppercase tracking-[0.3em] text-[12px] px-12 py-5 rounded-sm transition-all backdrop-blur-sm">
-                        Reservation
-                    </a>
-                </div>
-            </div>
 
-            {{-- Slider Indicators --}}
-            <div class="flex gap-6 mt-24 justify-center">
-                <template x-for="i in 3" :key="i">
-                    <button @click="activeSlide = i; clearInterval(auto)" 
-                            class="group flex items-center gap-2">
-                        <span class="w-12 h-[2px] transition-all duration-500"
-                              :class="activeSlide === i ? 'bg-gold w-16' : 'bg-white/20 group-hover:bg-white/40'"></span>
-                    </button>
-                </template>
-            </div>
-        </div>
-
-        {{-- Floating Scroll Indicator --}}
-        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 animate-bounce flex flex-col items-center gap-2">
-            <span class="font-heading text-white text-[9px] uppercase tracking-[0.5em] opacity-40">Scroll</span>
-            <div class="w-px h-12 bg-gradient-to-b from-gold to-transparent"></div>
-        </div>
-
-        {{-- Torn Edge Bottom --}}
-        <div class="torn-edge-bottom z-20"></div>
-    </section>
-
-    {{-- ═══ ABOUT SECTION (Premium Heritage Layout) ═══ --}}
-    <section class="py-32 bg-white relative overflow-hidden flex items-center min-h-[800px]">
-        {{-- Full Width Background Graphic --}}
-        <div class="absolute right-0 top-0 bottom-0 w-1/2 opacity-[0.03] pointer-events-none">
-            <img src="https://themesflat.co/html/restaurant/coffee/assets/images/bg/graphic-header.png" class="w-full h-full object-contain object-right grayscale">
-        </div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-0">
-                
-                {{-- Left Side: Main Portrait Image --}}
-                <div class="w-full lg:w-1/2 relative group">
-                    <div class="relative overflow-hidden rounded-2xl shadow-premium">
-                        <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                             alt="About Our Kitchen" 
-                             class="w-full h-[650px] object-cover transition-transform duration-1000 group-hover:scale-110">
-                    </div>
-                    
-                    {{-- Luxury Content Box --}}
-                    <div class="absolute top-[60%] left-[30%] lg:left-[45%] transform -translate-y-1/2 bg-white p-10 lg:p-16 shadow-premium rounded-xl z-20 w-[110%] md:w-[80%] lg:w-[100%] border border-gray-100 animate-fade-in-up">
-                        <div class="flex items-center gap-3 mb-6">
-                            <span class="w-8 h-px bg-gold"></span>
-                            <span class="font-heading font-medium text-gold uppercase tracking-[0.4em] text-[10px]">Since 2003</span>
-                        </div>
-                        
-                        <h2 class="font-heading text-forest-dark text-4xl lg:text-5xl font-bold uppercase leading-[1.1] mb-8 heritage-heading">
-                            Elevating Indian<br>Culinary Arts
-                        </h2>
-                        
-                        <p class="font-body text-gray-500 text-[14px] leading-relaxed mb-6 italic">
-                            "Cooking is not just about making food, it's about making memories. At Love Curry, we blend traditional spices with modern techniques to create a truly unforgettable dining experience."
-                        </p>
-                        <p class="font-body text-gray-500 text-[14px] leading-relaxed mb-10">
-                            Our journey began with a simple passion for authentic flavors. Today, we continue that legacy by sourcing the finest spices directly from India, ensuring every dish reflects our heritage and commitment to excellence.
-                        </p>
-                        
-                        <a href="/about" wire:navigate 
-                           class="inline-block bg-forest hover:bg-gold text-white font-heading font-bold uppercase tracking-[0.3em] text-[11px] px-12 py-5 transition-all shadow-xl rounded-sm">
-                            Discover Our Story
-                        </a>
-                    </div>
-                </div>
-
-                {{-- Right Side: Business Hours Box --}}
-                <div class="w-full lg:w-1/2 flex justify-center lg:justify-end relative group mt-20 lg:mt-0">
-                    {{-- Decorative Gold Offset Border --}}
-                    <div class="absolute inset-0 border-[20px] border-gold/5 translate-x-6 translate-y-6 rounded-3xl -z-10"></div>
-                    
-                    <div class="bg-forest rounded-2xl p-10 lg:p-14 w-full max-w-[450px] shadow-premium relative z-30 transition-transform duration-500 hover:scale-[1.03] forest-texture">
-                        <h3 class="font-heading text-gold text-3xl font-bold uppercase tracking-[0.2em] mb-12 text-center">Service Hours</h3>
-                        
-                        <div class="space-y-6">
-                            @php
-                                $hours = [
-                                    'Monday' => '11:00 - 23:00',
-                                    'Tuesday' => '11:00 - 23:00',
-                                    'Wednesday' => '11:00 - 23:00',
-                                    'Thursday' => '11:00 - 23:00',
-                                    'Friday' => '12:00 - 00:00',
-                                    'Saturday' => '12:00 - 00:00',
-                                    'Sunday' => '11:00 - 22:00',
-                                ];
-                            @endphp
-                            @foreach($hours as $day => $time)
-                                <div class="flex justify-between items-center group/item border-b border-white/5 pb-4">
-                                    <span class="font-heading text-white uppercase text-[12px] tracking-widest font-bold group-hover/item:text-gold transition-colors">{{ $day }}</span>
-                                    <span class="font-body text-gray-400 text-[12px] font-medium">{{ $time }}</span>
-                                </div>
-                            @endforeach
-                        </div>
-
-                        <div class="mt-12 pt-8 border-t border-white/10 text-center">
-                            <p class="font-heading text-gold text-[10px] uppercase tracking-[0.3em]">Reservations Recommended</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    {{-- ═══ CATEGORY CARDS (Premium Heritage Band) ═══ --}}
-    @if(isset($categories) && $categories->count())
-        <section class="relative py-32 bg-white overflow-hidden">
+        {{-- Hero Content --}}
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto flex flex-col items-center mt-32">
+            <h3 class="font-serif italic text-2xl md:text-3xl text-white mb-2 font-medium" style="font-family: 'Playfair Display', serif;">
+                - Welcome to Basilico Coffee Shop -
+            </h3>
             
-            {{-- Torn Background Band --}}
-            <div class="absolute inset-y-20 left-0 right-0 bg-cream/50 z-0">
-                {{-- Top Torn Edge --}}
-                <div class="absolute top-0 left-0 w-full h-10 -translate-y-[99%] z-10 opacity-70" 
-                     style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M1200,0 C1050,40 900,80 750,40 C600,0 450,40 300,80 C150,120 0,40 0,40 L0,0 L1200,0 Z' fill='%23faf7f2'/%3E%3C/svg%3E&quot;); background-size: 100% 100%;"></div>
-                
-                {{-- Bottom Torn Edge --}}
-                <div class="absolute bottom-0 left-0 w-full h-10 translate-y-[99%] z-10 opacity-70" 
-                     style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C150,80 300,20 450,60 C600,100 750,40 900,80 C1050,120 1200,40 1200,40 L1200,120 L0,120 Z' fill='%23faf7f2'/%3E%3C/svg%3E&quot;); background-size: 100% 100%;"></div>
+            <h1 class="text-2xl md:text-3xl lg:text-5xl font-black text-white uppercase tracking-tight mb-4 drop-shadow-md pb-2" style="font-family: 'Oswald', sans-serif;">
+                OUR PASSION IS IN OUR COFFEE
+            </h1>
+            
+            <p class="text-[13px] md:text-sm text-gray-100 font-medium mb-12 max-w-[600px] leading-relaxed tracking-wide">
+                Harbourfront Seafood Restaurant is the perfect spot in Sydney to celebrate a special occasion or to simply head out for a bite to eat.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mt-2 justify-center">
+                <a href="#menu" class="px-8 py-3 bg-[#c8a98a] hover:bg-[#b59372] text-[#2b2522] text-[11px] font-bold uppercase tracking-[0.2em] transition-all shadow-md text-center">
+                    VIEW ALL MENU
+                </a>
+                <a href="#reservations" class="px-8 py-3 bg-white hover:bg-gray-100 text-[#2b2522] text-[11px] font-bold uppercase tracking-[0.2em] transition-all shadow-md text-center">
+                    BOOK A TABLE
+                </a>
             </div>
-
-            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <span class="font-script text-gold text-3xl mb-2 block">Categories</span>
-                    <h2 class="font-heading text-forest-dark text-4xl md:text-5xl font-bold uppercase heritage-heading">Our Expertise</h2>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    @foreach($categories->take(3) as $index => $cat)
-                        @php
-                            $icons = ['fa-bowl-rice', 'fa-plate-wheat', 'fa-pepper-hot'];
-                            $icon = $icons[$index % count($icons)];
-                        @endphp
-                        <a href="/menu?category={{ $cat->id }}" wire:navigate
-                            class="relative rounded-2xl overflow-hidden h-[500px] group shadow-premium transition-all duration-700 hover:-translate-y-4">
-                            
-                            @if($cat->image)
-                                <img src="{{ asset('storage/' . $cat->image) }}"
-                                    class="w-full h-full object-cover group-hover:scale-125 transition duration-[2s]">
-                            @else
-                                <div class="w-full h-full bg-forest"></div>
-                            @endif
-
-                            {{-- Overlay Content --}}
-                            <div class="absolute inset-0 bg-gradient-to-t from-forest-dark/90 via-forest-dark/40 to-transparent flex flex-col items-center justify-end h-full pb-12 text-white">
-                                <div class="mb-6 transform group-hover:scale-110 group-hover:-translate-y-4 transition-all duration-700 bg-gold/10 p-5 rounded-full backdrop-blur-sm border border-gold/20">
-                                    <i class="fa-solid {{ $icon }} text-4xl text-gold-premium"></i>
-                                </div>
-                                <h3 class="font-heading text-2xl lg:text-3xl tracking-[0.3em] uppercase font-bold text-center">
-                                    {{ $cat->name[$locale] ?? $cat->name['en'] ?? '...' }}
-                                </h3>
-                                <div class="w-12 h-0.5 bg-gold mt-6 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-center"></div>
-                            </div>
-
-                            {{-- Border Effect --}}
-                            <div class="absolute inset-6 border border-white/10 rounded-xl pointer-events-none group-hover:inset-8 transition-all duration-700"></div>
-                        </a>
-                    @endforeach
-                </div>
+            
+            {{-- Dot Navigation --}}
+            <div class="flex items-center gap-2 mt-20">
+                <button class="w-3.5 h-3.5 rounded-full border-2 border-white bg-transparent flex items-center justify-center shrink-0">
+                    <span class="w-[3px] h-[3px] bg-white rounded-full"></span>
+                </button>
+                <button class="w-1.5 h-1.5 rounded-full bg-white opacity-80"></button>
             </div>
-        </section>
-    @endif
+        </div>
+    </section>
 
-    {{-- ═══ DELICIOUS MENU SECTION (Forest Green Layout) ═══ --}}
-    <section class="py-24 bg-forest-dark relative overflow-hidden forest-texture" x-data="{ activeTab: 'APPETIZERS' }">
-        {{-- Decorative Circles/Lines --}}
-        <div class="absolute left-8 top-1/2 -translate-y-1/2 decoration-dots opacity-30 hidden lg:flex">
-            @for($i = 0; $i < 40; $i++)
-                <div class="decoration-dot"></div>
-                @if($i % 5 == 4)
-                    <div class="w-24 h-[1px] bg-gold/20 -ml-4 my-1"></div>
-                @endif
-            @endfor
+    {{-- HIGHLIGHTS / CATEGORIES --}}
+    <section class="relative bg-white flex items-center justify-center min-h-[600px] md:min-h-[800px] py-16 md:py-32">
+        
+        {{-- Torn Paper Background Band --}}
+        <div class="absolute inset-x-0 w-full h-[65%] z-0 flex flex-col justify-between" style="background-color: #ede8dc; background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png'); box-shadow: 0 10px 40px rgba(0,0,0,0.05);">
+            {{-- Torn Edge SVG Top --}}
+            <svg class="absolute bottom-full left-0 w-full h-6 md:h-8 text-[#ede8dc]" style="fill: currentcolor;" preserveAspectRatio="none" viewBox="0 0 1200 40">
+                <path d="M0,40 L0,20 L30,40 L60,15 L90,35 L120,10 L150,40 L180,25 L210,40 L240,15 L270,30 L300,10 L330,35 L360,20 L390,40 L420,10 L450,30 L480,15 L510,40 L540,25 L570,35 L600,10 L630,40 L660,15 L690,35 L720,20 L750,40 L780,10 L810,30 L840,15 L870,40 L900,25 L930,35 L960,10 L990,40 L1020,15 L1050,35 L1080,20 L1110,40 L1140,10 L1170,30 L1200,20 L1200,40 Z"></path>
+            </svg>
+            {{-- Torn Edge SVG Bottom --}}
+            <svg class="absolute top-full left-0 w-full h-6 md:h-8 text-[#ede8dc]" style="fill: currentcolor;" preserveAspectRatio="none" viewBox="0 0 1200 40">
+                <path d="M0,0 L0,20 L30,5 L60,25 L90,5 L120,30 L150,10 L180,25 L210,0 L240,25 L270,10 L300,30 L330,5 L360,20 L390,0 L420,30 L450,10 L480,25 L510,0 L540,15 L570,5 L600,30 L630,0 L660,25 L690,5 L720,20 L750,0 L780,30 L810,10 L840,25 L870,0 L900,15 L930,5 L960,30 L990,0 L1020,25 L1050,5 L1080,20 L1110,0 L1140,30 L1170,10 L1200,20 L1200,0 Z"></path>
+            </svg>
         </div>
 
-        <div class="max-w-7xl mx-auto px-4 relative z-10">
-            {{-- Section Header --}}
-            <div class="text-center mb-16">
-                <h2 class="font-heading text-white text-5xl md:text-6xl font-bold uppercase tracking-tight mb-8">Delicious Menu</h2>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 justify-center">
                 
-                {{-- Tabs --}}
-                <div class="flex flex-wrap justify-center items-center gap-6 md:gap-12 font-heading text-[13px] font-bold tracking-[0.2em] text-white/60">
-                    <button @click="activeTab = 'APPETIZERS'" :class="activeTab === 'APPETIZERS' ? 'active-tab-gold' : 'hover:text-white'" class="pb-2 transition-all uppercase">Appetizers</button>
-                    <span class="text-gold/40 text-xl hidden md:block">✦</span>
-                    <button @click="activeTab = 'MAIN DISHES'" :class="activeTab === 'MAIN DISHES' ? 'active-tab-gold' : 'hover:text-white'" class="pb-2 transition-all uppercase">Main Dishes</button>
-                    <span class="text-gold/40 text-xl hidden md:block">✦</span>
-                    <button @click="activeTab = 'DESSERTS'" :class="activeTab === 'DESSERTS' ? 'active-tab-gold' : 'hover:text-white'" class="pb-2 transition-all uppercase">Desserts</button>
-                    <span class="text-gold/40 text-xl hidden md:block">✦</span>
-                    <button @click="activeTab = 'BEVERAGES'" :class="activeTab === 'BEVERAGES' ? 'active-tab-gold' : 'hover:text-white'" class="pb-2 transition-all uppercase">Beverages</button>
-                </div>
-            </div>
+                {{-- Category 1: COFFEE --}}
+                <div class="group relative rounded shadow-[0_15px_40px_rgba(0,0,0,0.4)] aspect-[3/4.2] max-w-[340px] mx-auto w-full cursor-pointer bg-[#1c1816] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110 opacity-70 mix-blend-overlay group-hover:opacity-40">
+                    
+                    {{-- Default State --}}
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#1c1816] via-[transparent] to-transparent transition duration-500 opacity-100 group-hover:opacity-0"></div>
+                    <div class="absolute bottom-10 left-0 right-0 flex flex-col items-center justify-end transition-all duration-500 transform group-hover:translate-y-8 group-hover:opacity-0">
+                        <svg class="w-12 h-12 text-[#ede8dc] mb-4 opacity-90 drop-shadow-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8zm4-5v3m4-3v3m4-3v3"></path></svg>
+                        <h3 class="text-white font-black text-2xl uppercase tracking-[0.1em] drop-shadow-md" style="font-family: 'Oswald', sans-serif;">Coffee</h3>
+                    </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center bg-forest-light/30 rounded-3xl p-8 md:p-12 border border-white/5 shadow-3xl">
-                {{-- Left Content: Menu Items --}}
-                <div class="lg:col-span-7 space-y-12">
-                    @php
-                        $menuData = [
-                            'APPETIZERS' => [
-                                ['name' => 'STUFFED MUSHROOMS', 'price' => '25.00', 'desc' => 'Flavorful, filled with panko bread crumbs, pine nuts, parsley, sun-dried tomatoes, and cheese.', 'image' => 'https://images.unsplash.com/photo-1621852004158-f3bc188caa2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80'],
-                                ['name' => 'JALAPENO POPPERS', 'price' => '29.00', 'desc' => 'Greek yogurt filling instead of a traditional cream cheese one, it\'s every bit as delicious.', 'image' => 'https://images.unsplash.com/photo-1599321955419-780136f46279?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80'],
-                                ['name' => 'CAPRESE SKEWERS', 'price' => '45.00', 'desc' => 'Drizzle these colorful skewers with an easy balsamic reduction for a pop of sweet tangy flavor.', 'image' => 'https://images.unsplash.com/photo-1603033331443-41e974e4c5b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80'],
-                            ],
-                            'MAIN DISHES' => [
-                                ['name' => 'CHICKEN TIKKA MASALA', 'price' => '35.00', 'desc' => 'Roasted marinated chicken chunks in a spiced creamy sauce.', 'image' => 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80'],
-                                ['name' => 'PALAK PANEER', 'price' => '32.00', 'desc' => 'Classic Indian dish made with spinach and cottage cheese.', 'image' => 'https://images.unsplash.com/photo-1601050633647-81a3cf8f0fba?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80'],
-                            ],
-                            'DESSERTS' => [
-                                ['name' => 'GULAB JAMUN', 'price' => '15.00', 'desc' => 'Deep fried milk dumplings soaked in sugar syrup.', 'image' => 'https://images.unsplash.com/photo-1589119908995-c6837fa14848?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80'],
-                            ],
-                            'BEVERAGES' => [
-                                ['name' => 'MANGO LASSI', 'price' => '10.00', 'desc' => 'Refreshing yogurt-based drink made with mango pulp.', 'image' => 'https://images.unsplash.com/photo-1546173159-315724a31696?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80'],
-                            ]
-                        ];
-                    @endphp
-
-                    @foreach($menuData as $category => $items)
-                        <div x-show="activeTab === '{{ $category }}'" 
-                             x-transition:enter="transition ease-out duration-500"
-                             x-transition:enter-start="opacity-0 translate-x-10"
-                             x-transition:enter-end="opacity-100 translate-x-0"
-                             class="space-y-10">
-                            @foreach($items as $item)
-                                <div class="flex items-center gap-6 group">
-                                    <div class="shrink-0 relative">
-                                        <img src="{{ $item['image'] }}" class="w-20 h-20 rounded-full object-cover border-2 border-gold/30 group-hover:border-gold transition-colors duration-500">
-                                    </div>
-                                    <div class="flex-grow">
-                                        <div class="flex items-end gap-4 mb-2">
-                                            <h4 class="font-heading font-bold text-white text-lg tracking-widest uppercase">{{ $item['name'] }} <span class="ml-2 text-[8px] bg-gold text-white px-2 py-0.5 rounded-sm align-middle">NEW</span></h4>
-                                            <div class="menu-item-dotted mb-1"></div>
-                                            <span class="font-heading text-lg font-bold text-gold shrink-0">Rs{{ $item['price'] }}</span>
-                                        </div>
-                                        <p class="text-white/50 text-[13px] font-body leading-relaxed max-w-xl italic">
-                                            {{ $item['desc'] }}
-                                        </p>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                    @endforeach
-                </div>
-
-                {{-- Right Content: Arched Image --}}
-                <div class="lg:col-span-5 flex justify-center lg:justify-end">
-                    <div class="menu-arched-frame max-w-[400px]">
-                        <div class="overflow-hidden" style="border-top-left-radius: 50% 100%; border-top-right-radius: 50% 100%;">
-                            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                                 class="w-full h-full object-cover aspect-[4/5] hover:scale-110 transition-transform duration-1000">
+                    {{-- Hover State --}}
+                    <div class="absolute inset-0 bg-[#1c1816]/90 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col items-center justify-center p-6 text-center z-10">
+                        <div class="absolute inset-3.5 border border-[#c8a98a]/60 rounded-sm opacity-0 group-hover:opacity-100 transition duration-500 delay-100 pointer-events-none"></div>
+                        <div class="transform translate-y-8 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 flex flex-col items-center">
+                            <svg class="w-10 h-10 text-[#c8a98a] mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8zm4-5v3m4-3v3m4-3v3"></path></svg>
+                            <h3 class="text-[#c8a98a] font-bold text-xl uppercase tracking-[0.2em] mb-4" style="font-family: 'Oswald', sans-serif;">- Coffee -</h3>
+                            <p class="text-[#ede8dc]/80 text-[11px] leading-relaxed max-w-[170px] font-medium tracking-wide">Alienum phaedrum torquatos nec eu, vis detraxit periculis ex, nihil expetendis in mei an pericula.</p>
                         </div>
                     </div>
                 </div>
+
+                {{-- Category 2: BAKERY --}}
+                <div class="group relative rounded shadow-[0_15px_40px_rgba(0,0,0,0.4)] aspect-[3/4.2] max-w-[340px] mx-auto w-full cursor-pointer bg-[#1c1816] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110 opacity-70 mix-blend-overlay group-hover:opacity-40">
+                    
+                    {{-- Default State --}}
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#1c1816] via-[transparent] to-transparent transition duration-500 opacity-100 group-hover:opacity-0"></div>
+                    <div class="absolute bottom-10 left-0 right-0 flex flex-col items-center justify-end transition-all duration-500 transform group-hover:translate-y-8 group-hover:opacity-0">
+                        <svg class="w-12 h-12 text-[#ede8dc] mb-4 opacity-90 drop-shadow-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m4.6 13 4-6a3 3 0 0 1 5.1 0l4 6A4 4 0 0 1 14 19H6a4 4 0 0 1-1.4-6Z" /><path d="M10.5 7.5 8 13" /><path d="M15 8.5l-2.5 5" /></svg>
+                        <h3 class="text-white font-black text-2xl uppercase tracking-[0.1em] drop-shadow-md" style="font-family: 'Oswald', sans-serif;">Bakery</h3>
+                    </div>
+
+                    {{-- Hover State --}}
+                    <div class="absolute inset-0 bg-[#1c1816]/90 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col items-center justify-center p-6 text-center z-10">
+                        <div class="absolute inset-3.5 border border-[#c8a98a]/60 rounded-sm opacity-0 group-hover:opacity-100 transition duration-500 delay-100 pointer-events-none"></div>
+                        <div class="transform translate-y-8 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 flex flex-col items-center">
+                            <svg class="w-10 h-10 text-[#c8a98a] mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m4.6 13 4-6a3 3 0 0 1 5.1 0l4 6A4 4 0 0 1 14 19H6a4 4 0 0 1-1.4-6Z" /><path d="M10.5 7.5 8 13" /><path d="M15 8.5l-2.5 5" /></svg>
+                            <h3 class="text-[#c8a98a] font-bold text-xl uppercase tracking-[0.2em] mb-4" style="font-family: 'Oswald', sans-serif;">- Bakery -</h3>
+                            <p class="text-[#ede8dc]/80 text-[11px] leading-relaxed max-w-[170px] font-medium tracking-wide">Alienum phaedrum torquatos nec eu, vis detraxit periculis ex, nihil expetendis in mei an pericula.</p>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Category 3: BREAKFAST --}}
+                <div class="group relative rounded shadow-[0_15px_40px_rgba(0,0,0,0.4)] aspect-[3/4.2] max-w-[340px] mx-auto w-full cursor-pointer bg-[#1c1816] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1495474472207-464a8d910626?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110 opacity-70 mix-blend-overlay group-hover:opacity-40">
+                    
+                    {{-- Default State --}}
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#1c1816] via-[transparent] to-transparent transition duration-500 opacity-100 group-hover:opacity-0"></div>
+                    <div class="absolute bottom-10 left-0 right-0 flex flex-col items-center justify-end transition-all duration-500 transform group-hover:translate-y-8 group-hover:opacity-0">
+                        <svg class="w-12 h-12 text-[#ede8dc] mb-4 opacity-90 drop-shadow-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1" /><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z" /><line x1="6" x2="6" y1="2" y2="4" /><line x1="10" x2="10" y1="2" y2="4" /><line x1="14" x2="14" y1="2" y2="4" /></svg>
+                        <h3 class="text-white font-black text-2xl uppercase tracking-[0.1em] drop-shadow-md" style="font-family: 'Oswald', sans-serif;">Breakfast</h3>
+                    </div>
+
+                    {{-- Hover State --}}
+                    <div class="absolute inset-0 bg-[#1c1816]/90 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col items-center justify-center p-6 text-center z-10">
+                        <div class="absolute inset-3.5 border border-[#c8a98a]/60 rounded-sm opacity-0 group-hover:opacity-100 transition duration-500 delay-100 pointer-events-none"></div>
+                        <div class="transform translate-y-8 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 flex flex-col items-center">
+                            <svg class="w-10 h-10 text-[#c8a98a] mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1" /><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z" /><line x1="6" x2="6" y1="2" y2="4" /><line x1="10" x2="10" y1="2" y2="4" /><line x1="14" x2="14" y1="2" y2="4" /></svg>
+                            <h3 class="text-[#c8a98a] font-bold text-xl uppercase tracking-[0.2em] mb-4" style="font-family: 'Oswald', sans-serif;">- Breakfast -</h3>
+                            <p class="text-[#ede8dc]/80 text-[11px] leading-relaxed max-w-[170px] font-medium tracking-wide">Alienum phaedrum torquatos nec eu, vis detraxit periculis ex, nihil expetendis in mei an pericula.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    {{-- CHEF'S SPECIALS (SIGNATURE DISHES) --}}
+    <section class="py-24 relative border-t border-[#e4decb]" style="background-color: #fdfbf7; background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div>
+                    <h2 class="text-3xl md:text-5xl font-black text-[#2b2522] mb-4 uppercase tracking-tight" style="font-family: 'Oswald', sans-serif;">Chef's Signatures</h2>
+                    <p class="text-[#666] text-sm md:text-base max-w-xl font-medium tracking-wide">Carefully curated dishes that represent the pinnacle of our culinary expertise.</p>
+                </div>
+                <a href="/menu" class="hidden md:inline-flex items-center gap-2 text-[#c8a98a] font-bold uppercase tracking-widest text-xs hover:text-[#b59372] transition rounded-sm border-b-2 border-transparent hover:border-[#c8a98a] pb-1">
+                    View Full Menu <svg class="w-4 h-4 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                </a>
             </div>
 
-            {{-- Section Footer --}}
-            <div class="text-center mt-16">
-                <p class="text-white/40 font-body text-sm mb-8 italic">During winter daily from 7:00 pm to 9:00 pm</p>
-                <a href="/menu" wire:navigate
-                   class="inline-block border border-gold text-gold hover:bg-gold hover:text-white font-heading font-bold uppercase tracking-[0.3em] text-[11px] px-12 py-5 transition-all">
-                    View All Menu
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                
+                {{-- Dish 1 --}}
+                <div class="flex flex-col sm:flex-row gap-6 p-6 rounded-sm bg-white hover:bg-[#fcfaf5] border border-[#e4decb] hover:border-[#c8a98a]/50 shadow-sm hover:shadow-lg transition-all duration-300 group">
+                    <div class="w-full sm:w-40 h-40 rounded-sm overflow-hidden shrink-0 shadow-md border border-[#e4decb]">
+                        <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out">
+                    </div>
+                    <div class="flex flex-col justify-center flex-grow">
+                        <div class="flex justify-between items-start mb-2 border-b border-dashed border-[#e4decb] pb-2">
+                            <h4 class="text-xl font-bold text-[#2b2522]" style="font-family: 'Oswald', sans-serif;">Chicken Tikka Masala</h4>
+                            <span class="text-xl font-extrabold text-[#c8a98a]" style="font-family: 'Playfair Display', serif;">$25.00</span>
+                        </div>
+                        <p class="text-[#666] text-xs leading-relaxed mb-4 mt-2">Roasted marinated chicken chunks served in a spiced, perfectly creamy and rich tomato sauce.</p>
+                        <div class="flex items-center gap-2 mt-auto">
+                            <span class="text-[10px] font-bold text-[#2b2522] uppercase tracking-[0.2em]">Heat:</span>
+                            <div class="flex gap-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#c8a98a]"></span>
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#c8a98a]"></span>
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#e4decb]"></span>
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#e4decb]"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Dish 2 --}}
+                <div class="flex flex-col sm:flex-row gap-6 p-6 rounded-sm bg-white hover:bg-[#fcfaf5] border border-[#e4decb] hover:border-[#c8a98a]/50 shadow-sm hover:shadow-lg transition-all duration-300 group">
+                    <div class="w-full sm:w-40 h-40 rounded-sm overflow-hidden shrink-0 shadow-md border border-[#e4decb]">
+                        <img src="https://images.unsplash.com/photo-1621852004158-f3bc188caa2d?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out">
+                    </div>
+                    <div class="flex flex-col justify-center flex-grow">
+                        <div class="flex justify-between items-start mb-2 border-b border-dashed border-[#e4decb] pb-2">
+                            <h4 class="text-xl font-bold text-[#2b2522]" style="font-family: 'Oswald', sans-serif;">Stuffed Mushrooms</h4>
+                            <span class="text-xl font-extrabold text-[#c8a98a]" style="font-family: 'Playfair Display', serif;">$15.00</span>
+                        </div>
+                        <p class="text-[#666] text-xs leading-relaxed mb-4 mt-2">Savory mushrooms filled with a delightful mix of panko, aromatic herbs, and melted artisan cheese.</p>
+                        <div class="flex items-center gap-2 mt-auto">
+                            <span class="text-[10px] font-bold text-[#2b2522] uppercase tracking-[0.2em]">Heat:</span>
+                            <div class="flex gap-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#e4decb]"></span>
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#e4decb]"></span>
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#e4decb]"></span>
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#e4decb]"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Dish 3 --}}
+                <div class="flex flex-col sm:flex-row gap-6 p-6 rounded-sm bg-white hover:bg-[#fcfaf5] border border-[#e4decb] hover:border-[#c8a98a]/50 shadow-sm hover:shadow-lg transition-all duration-300 group">
+                    <div class="w-full sm:w-40 h-40 rounded-sm overflow-hidden shrink-0 shadow-md border border-[#e4decb]">
+                        <img src="https://images.unsplash.com/photo-1601050633647-81a3cf8f0fba?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out">
+                    </div>
+                    <div class="flex flex-col justify-center flex-grow">
+                        <div class="flex justify-between items-start mb-2 border-b border-dashed border-[#e4decb] pb-2">
+                            <h4 class="text-xl font-bold text-[#2b2522]" style="font-family: 'Oswald', sans-serif;">Palak Paneer Special</h4>
+                            <span class="text-xl font-extrabold text-[#c8a98a]" style="font-family: 'Playfair Display', serif;">$22.00</span>
+                        </div>
+                        <p class="text-[#666] text-xs leading-relaxed mb-4 mt-2">Fresh pureed spinach blended with spices and soft, homemade cottage cheese cubes.</p>
+                        <div class="flex items-center gap-2 mt-auto">
+                            <span class="text-[10px] font-bold text-[#2b2522] uppercase tracking-[0.2em]">Heat:</span>
+                            <div class="flex gap-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#c8a98a]"></span>
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#e4decb]"></span>
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#e4decb]"></span>
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#e4decb]"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Dish 4 --}}
+                <div class="flex flex-col sm:flex-row gap-6 p-6 rounded-sm bg-white hover:bg-[#fcfaf5] border border-[#e4decb] hover:border-[#c8a98a]/50 shadow-sm hover:shadow-lg transition-all duration-300 group">
+                    <div class="w-full sm:w-40 h-40 rounded-sm overflow-hidden shrink-0 shadow-md border border-[#e4decb]">
+                        <img src="https://images.unsplash.com/photo-1546173159-315724a31696?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out">
+                    </div>
+                    <div class="flex flex-col justify-center flex-grow">
+                        <div class="flex justify-between items-start mb-2 border-b border-dashed border-[#e4decb] pb-2">
+                            <h4 class="text-xl font-bold text-[#2b2522]" style="font-family: 'Oswald', sans-serif;">Golden Mango Lassi</h4>
+                            <span class="text-xl font-extrabold text-[#c8a98a]" style="font-family: 'Playfair Display', serif;">$8.00</span>
+                        </div>
+                        <p class="text-[#666] text-xs leading-relaxed mb-4 mt-2">A perfectly chilled, sweet and tangy yogurt drink enriched with the finest golden Alphonso mangoes.</p>
+                        <div class="flex items-center gap-2 mt-auto">
+                            <span class="text-[10px] font-bold text-[#2b2522] uppercase tracking-[0.2em]">Sweet:</span>
+                            <div class="flex gap-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#c8a98a]"></span>
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#c8a98a]"></span>
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#c8a98a]"></span>
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#e4decb]"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="mt-12 text-center md:hidden">
+                <a href="/menu" class="inline-flex items-center gap-2 px-8 py-3 bg-[#c8a98a] text-white font-bold uppercase tracking-widest text-[10px] rounded-sm hover:bg-[#b59372] transition shadow-md">
+                    View Full Menu
                 </a>
             </div>
         </div>
     </section>
 
-    {{-- ═══ POPULAR ITEMS (Luxury Culinary Highlights) ═══ --}}
-    @if(isset($popularItems) && $popularItems->count())
-        <section class="py-32 bg-white relative overflow-hidden">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-24">
-                    <span class="font-script text-gold text-3xl mb-2 block">Chef Recommendation</span>
-                    <h2 class="font-heading text-forest-dark text-4xl md:text-5xl font-bold uppercase heritage-heading">Signature Deals</h2>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-16">
-                    @foreach($popularItems as $item)
-                        <div class="flex flex-col md:flex-row items-center md:items-start gap-8 group cursor-pointer animate-fade-in-up">
-                            
-                            {{-- Circular Thumbnail with Premium Border --}}
-                            <div class="shrink-0 relative">
-                                <div class="w-[140px] h-[140px] relative">
-                                    @if($item->primaryImage)
-                                        <img src="{{ asset('storage/' . $item->primaryImage->url) }}"
-                                            class="w-full h-full rounded-full object-cover shadow-premium border-[8px] border-cream group-hover:border-gold transition-colors duration-700">
-                                    @else
-                                        <div class="w-full h-full rounded-full bg-forest flex items-center justify-center text-gold shadow-premium border-[8px] border-cream group-hover:border-gold transition-colors duration-700">
-                                            <i class="fa-solid fa-utensils text-3xl"></i>
-                                        </div>
-                                    @endif
-                                    
-                                    {{-- Rotating SVG Border Animation (Subtle) --}}
-                                    <div class="absolute -inset-2 border border-dotted border-gold opacity-0 group-hover:opacity-30 rounded-full animate-spin-slow transition-opacity"></div>
-                                </div>
-
-                                {{-- Floating Badge --}}
-                                @if($item->is_new || $item->is_popular)
-                                    <div class="absolute -top-2 -right-4 bg-gold text-white text-[9px] uppercase font-bold tracking-[0.2em] px-4 py-1.5 rounded-full border-4 border-white shadow-premium z-10">
-                                        {{ $item->is_new ? 'New Arrival' : 'Best Seller' }}
-                                    </div>
-                                @endif
-                            </div>
-
-                            {{-- Content (Title, Dotted Line, Price) --}}
-                            <div class="flex-grow pt-4 text-center md:text-left">
-                                <div class="flex flex-col md:flex-row items-center md:items-end gap-2 mb-4">
-                                    <h4 class="font-heading font-bold text-forest-dark text-2xl tracking-wide group-hover:text-gold transition-colors">
-                                        {{ $item->name[$locale] ?? $item->name['en'] ?? '...' }}
-                                    </h4>
-                                    <div class="hidden md:block flex-grow border-b border-dotted border-gray-300 mb-1 mx-4"></div>
-                                    <span class="font-heading text-2xl font-bold text-gold">
-                                        {{ number_format($item->base_price_cents / 100, 2) }} {{ $item->currency_code }}
-                                    </span>
-                                </div>
-
-                                @if(!empty($item->description[$locale] ?? $item->description['en'] ?? ''))
-                                    <p class="text-[14px] text-gray-500 font-body leading-relaxed max-w-xl mb-6 italic opacity-80 group-hover:opacity-100 transition-opacity">
-                                        "{{ Str::limit($item->description[$locale] ?? $item->description['en'], 100) }}"
-                                    </p>
-                                @endif
-
-                                @if($item->spiciness_level)
-                                    <div class="flex justify-center md:justify-start gap-1.5">
-                                        <span class="text-[9px] font-heading font-bold text-gray-400 uppercase tracking-widest mr-2 pt-0.5">Heat Level:</span>
-                                        @for($i = 1; $i <= 5; $i++)
-                                            <div class="w-1.5 h-1.5 rounded-full transition-all duration-500 {{ $i <= $item->spiciness_level ? 'bg-red-600 scale-125' : 'bg-gray-200' }}"></div>
-                                        @endfor
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-
-                <div class="text-center mt-24">
-                    <a href="/menu" wire:navigate
-                        class="inline-block relative group">
-                        <span class="relative z-10 font-heading text-forest-dark font-bold uppercase tracking-[0.4em] text-sm pb-2 border-b-2 border-gold/30 group-hover:border-gold transition-all">Explore Culinary Map</span>
-                        <div class="absolute -bottom-1 left-0 w-0 h-[2px] bg-gold transition-all duration-500 group-hover:w-full"></div>
-                    </a>
-                </div>
-            </div>
-        </section>
-    @endif
-
-    {{-- ═══ OUR JOURNEY (Heritage Story Layout) ═══ --}}
-    <section class="relative py-40 bg-cream overflow-hidden bg-paper">
-        {{-- Side Graphics --}}
-        <div class="absolute left-0 bottom-0 opacity-10 pointer-events-none transform -scale-x-100 translate-y-20">
-            <img src="https://themesflat.co/html/restaurant/coffee/assets/images/bg/graphic-header.png" class="w-[600px] grayscale">
-        </div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row items-center gap-24">
+    {{-- ABOUT & HOURS SECTION (Template Style) --}}
+    <section id="about" class="py-24 relative" style="background-color: #fdfbf7; background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');">
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center">
                 
-                {{-- Left Side: Large Overlapping Images --}}
-                <div class="w-full lg:w-1/2 flex justify-center lg:justify-start">
-                    <div class="relative group">
-                        {{-- Circular Frame with Animation --}}
-                        <div class="relative w-[380px] h-[380px] md:w-[550px] md:h-[550px]">
-                            <div class="absolute inset-0 border-[20px] border-white rounded-full shadow-premium z-10 transition-transform duration-1000 group-hover:scale-[1.03]"></div>
-                            <img src="https://images.unsplash.com/photo-1596797038583-1c198f4fd7f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                                 class="w-full h-full rounded-full object-cover relative z-0 group-hover:scale-110 transition-transform duration-[3s]">
-                            
-                            {{-- Rotating Quality Seal --}}
-                            <div class="absolute -bottom-6 -right-6 w-40 h-40 bg-white rounded-full p-4 shadow-premium z-20 flex flex-col items-center justify-center text-center border-4 border-gold">
-                                <i class="fa-solid fa-medal text-gold text-4xl mb-2"></i>
-                                <span class="font-heading text-[10px] font-bold uppercase tracking-widest text-forest-dark">Premium Quality Since 2003</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Right Side: Content --}}
-                <div class="w-full lg:w-1/2">
-                    <div class="flex items-center gap-4 mb-6 animate-fade-in">
-                        <span class="font-script text-gold text-4xl">Our Heritage</span>
-                        <div class="h-px w-16 bg-gold/40"></div>
+                {{-- Left Side: Text Content --}}
+                <div class="flex flex-col items-start pt-8 lg:pt-0">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="w-2 h-2 rounded-full bg-[#c8a98a]"></span>
+                        <span class="text-[#c8a98a] font-bold text-[10px] tracking-widest uppercase">Coffee Shop Since 2003</span>
                     </div>
                     
-                    <h2 class="font-heading text-forest-dark text-4xl lg:text-5xl lg:text-6xl font-bold uppercase leading-[0.95] mb-10 heritage-heading">
-                        Traditional Soul,<br><span class="text-gold">Modern Heart</span>
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-[#2b2522] uppercase tracking-tight leading-[1.1] mb-8" style="font-family: 'Oswald', sans-serif;">
+                        WE ARE NOT YOUR<br/>AVERAGE COFFEE SHOP
                     </h2>
                     
-                    <p class="font-body text-gray-500 text-[16px] leading-relaxed mb-12 max-w-xl opacity-90">
-                        At Love Curry, we believe that every spice tells a story. For over two decades, our family has preserved the sacred art of Indian slow-cooking, using freshly stone-ground masalas and organic ingredients to feed both body and spirit.
-                    </p>
-                    
-                    {{-- Features Grid (2x2) --}}
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-10 mb-16">
-                        @foreach([
-                            ['title' => 'Chef Heritage', 'icon' => 'fa-user-tie', 'text' => 'Centuries of recipe wisdom.'],
-                            ['title' => 'Pure Spices', 'icon' => 'fa-mortar-pestle', 'text' => 'Ground in-house daily.'],
-                            ['title' => 'Clay Tandoor', 'icon' => 'fa-fire-burner', 'text' => 'Ancient thermal techniques.'],
-                            ['title' => 'Love Crafted', 'icon' => 'fa-heart', 'text' => 'Made for your family.'],
-                        ] as $feature)
-                            <div class="flex items-start gap-5 group/item cursor-default">
-                                <div class="w-14 h-14 bg-white border border-gold/20 rounded-xl flex items-center justify-center text-gold shrink-0 group-hover/item:bg-gold group-hover/item:text-white transition-all duration-500 shadow-sm group-hover/item:shadow-gold/20">
-                                    <i class="fa-solid {{ $feature['icon'] }} text-xl"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-forest-dark font-heading font-bold uppercase tracking-widest text-sm mb-1 transition-colors group-hover/item:text-gold">
-                                        {{ $feature['title'] }}
-                                    </h4>
-                                    <p class="text-[12px] text-gray-400 font-body">{{ $feature['text'] }}</p>
-                                </div>
-                            </div>
-                        @endforeach
+                    <div class="text-[#666] text-sm md:text-base leading-relaxed max-w-lg mb-8 space-y-4">
+                        <p>We offer some of the best locally roasted coffee using "Brazilian Santos" beans. Enjoy Dark, Blonde, Jamaican, Italian & Decaf roasts. Also available are our specialty Lattes, Frappes, Mochas, Cappuccinos, Americanos & more_</p>
+                        <p>To see more of our coffee, specialty drinks & food menus, please click the link below. There are many variations of passages of lorem ipsum available but the majority have suffered alteration in some form by injected.</p>
                     </div>
 
-                    {{-- Action & Signature --}}
-                    <div class="flex flex-col sm:flex-row items-center gap-12 pt-8 border-t border-gray-100">
-                        <a href="/about" wire:navigate 
-                           class="bg-forest hover:bg-gold text-white font-heading font-bold uppercase tracking-[0.3em] text-[12px] px-12 py-5 transition-all shadow-premium rounded-sm shrink-0">
-                            Our Full Story
-                        </a>
-                        
-                        <div class="flex items-center gap-6">
-                            <div class="flex flex-col text-right">
-                                <span class="font-script text-forest-dark text-4xl opacity-90">Rajvinder Patel</span>
-                                <span class="font-heading text-[10px] text-gold uppercase tracking-[0.4em] mt-1 font-bold">Founding Master Chef</span>
-                            </div>
-                            <img src="https://images.unsplash.com/photo-1583394838336-acd977730f8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="w-16 h-16 rounded-full border-2 border-gold object-cover grayscale">
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    {{-- ═══ TESTIMONIALS ═══ --}}
-    <section class="py-24 bg-cream sketch-bg relative overflow-hidden">
-        <div class="max-w-4xl mx-auto px-4 text-center" x-data="{ active: 0 }">
-            <div class="flex items-center justify-center gap-3 mb-6">
-                <span class="font-script text-gold text-2xl">Testimonials</span>
-                <div class="h-[1px] w-12 bg-gold"></div>
-            </div>
-            <h2 class="font-heading text-brown-darker text-4xl lg:text-5xl font-bold uppercase mb-16">What Our Guests Say</h2>
-
-            <div class="relative">
-                <div class="flex flex-col items-center justify-center">
-                    <div class="px-4 md:px-12 min-h-[220px] flex items-center justify-center w-full relative">
-                        
-                        <div x-show="active === 0" x-transition.opacity.duration.500ms class="absolute inset-0 flex flex-col items-center justify-center">
-                            <svg class="w-12 h-12 text-gold/20 mx-auto mb-6" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-                            <p class="text-xl md:text-2xl text-brown-darker font-body leading-relaxed mb-8 font-medium">
-                                "The best Indian food I've ever had outside of India. The butter chicken is absolutely divine, and the naan bread is always fresh. A true gem!"
-                            </p>
-                            <p class="font-heading font-bold uppercase tracking-widest text-[#696969] text-sm">Sarah Johnson <span class="text-gold mx-2">/</span> Food Critic</p>
-                        </div>
-
-                        <div x-show="active === 1" x-transition.opacity.duration.500ms class="absolute inset-0 flex flex-col items-center justify-center" style="display: none;">
-                            <svg class="w-12 h-12 text-gold/20 mx-auto mb-6" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-                            <p class="text-xl md:text-2xl text-brown-darker font-body leading-relaxed mb-8 font-medium">
-                                "Love Curry never disappoints. The atmosphere is warm and inviting, and the staff treats you like family. The biryani is a must-try!"
-                            </p>
-                            <p class="font-heading font-bold uppercase tracking-widest text-[#696969] text-sm">Michael Chen <span class="text-gold mx-2">/</span> Local Guide</p>
-                        </div>
-
-                        <div x-show="active === 2" x-transition.opacity.duration.500ms class="absolute inset-0 flex flex-col items-center justify-center" style="display: none;">
-                            <svg class="w-12 h-12 text-gold/20 mx-auto mb-6" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-                            <p class="text-xl md:text-2xl text-brown-darker font-body leading-relaxed mb-8 font-medium">
-                                "Perfect for a date night or family dinner. The spice levels are perfectly customizable, and the presentation is beautiful. Can't recommend it enough!"
-                            </p>
-                            <p class="font-heading font-bold uppercase tracking-widest text-[#696969] text-sm">Emma Williams <span class="text-gold mx-2">/</span> Regular Guest</p>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Custom Navigation --}}
-                <div class="flex items-center justify-center gap-8 mt-12">
-                     <button class="w-10 h-10 border-2 border-brown-dark rounded-full flex items-center justify-center text-brown-dark hover:bg-brown-dark hover:text-white transition-colors" @click="active = active > 0 ? active - 1 : 2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-                    </button>
-                    <div class="flex gap-3">
-                        @for($i = 0; $i < 3; $i++)
-                            <button class="w-2.5 h-2.5 rounded-full transition-all"
-                                :class="active === {{ $i }} ? 'bg-gold w-6' : 'bg-gray-300 hover:bg-gray-400'"
-                                @click="active = {{ $i }}"></button>
-                        @endfor
-                    </div>
-                    <button class="w-10 h-10 border-2 border-brown-dark rounded-full flex items-center justify-center text-brown-dark hover:bg-brown-dark hover:text-white transition-colors" @click="active = active < 2 ? active + 1 : 0">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    {{-- ═══ DELICIOUS MENU SECTION (Forest Luxury) ═══ --}}
-    <section class="relative py-32 overflow-hidden forest-texture bg-forest-dark">
-        <div class="max-w-7xl mx-auto px-4 relative z-10">
-            <div class="text-center mb-16 animate-fade-in">
-                <span class="font-script text-gold text-4xl mb-2 block">Our Menu</span>
-                <h2 class="font-heading text-white text-4xl md:text-5xl lg:text-6xl font-bold uppercase heritage-heading">Delicious Menu</h2>
-            </div>
-
-            <div x-data="{ activeTab: 'Appetizers' }" class="flex flex-col items-center">
-                {{-- Tabs Wrapper --}}
-                <div class="flex flex-wrap justify-center gap-6 md:gap-12 mb-16 pb-4 border-b border-white/5 animate-fade-in">
-                    @foreach(['Appetizers', 'Main Dishes', 'Desserts', 'Beverages'] as $tab)
-                        <button @click="activeTab = '{{ $tab }}'" 
-                                :class="activeTab === '{{ $tab }}' ? 'text-gold-premium scale-110 active-tab-gold' : 'text-white/40 hover:text-white'"
-                                class="font-heading font-bold uppercase tracking-[0.4em] text-[11px] transition-all duration-500 relative pb-4">
-                            {{ $tab }}
-                            <div x-show="activeTab === '{{ $tab }}'" 
-                                 x-transition:enter="transition scale-x-0 duration-500"
-                                 x-transition:enter-end="scale-x-100"
-                                 class="absolute bottom-0 left-0 w-full h-[2px] bg-gold shadow-gold"></div>
-                        </button>
-                    @endforeach
-                </div>
-
-                {{-- Tab Content Grid --}}
-                <div class="w-full grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12 min-h-[500px]">
-                    <template x-if="activeTab === 'Appetizers'">
-                        @for($i = 0; $i < 4; $i++)
-                            <div class="flex items-center gap-6 group animate-fade-in-up">
-                                <div class="w-20 h-20 md:w-24 md:h-24 shrink-0 rounded-full overflow-hidden border-2 border-gold/20 group-hover:border-gold transition-colors duration-700">
-                                    <img src="https://images.unsplash.com/photo-1541529086526-db283c563270?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
-                                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
-                                </div>
-                                <div class="flex-grow">
-                                    <div class="flex items-end justify-between gap-4 mb-2">
-                                        <h4 class="font-heading font-bold text-white text-lg md:text-xl tracking-wider group-hover:text-gold transition-colors">Vegetable Samosa</h4>
-                                        <div class="flex-grow border-b border-dotted border-white/10 mb-1"></div>
-                                        <span class="font-heading text-gold text-lg md:text-xl font-bold">$12.00</span>
-                                    </div>
-                                    <p class="text-[12px] text-white/40 font-body leading-relaxed group-hover:text-white/60 transition-colors">Crispy pastry filled with spiced potatoes and peas, served with mint chutney.</p>
-                                </div>
-                            </div>
-                        @endfor
-                    </template>
-                    {{-- Other templates would follow similar logic --}}
-                </div>
-
-                <div class="mt-20 text-center animate-fade-in">
-                    <a href="/menu" wire:navigate
-                       class="inline-block bg-transparent border border-gold text-gold hover:bg-gold hover:text-white font-heading font-bold uppercase tracking-[0.3em] text-[11px] px-12 py-5 rounded-sm transition-all shadow-gold/20">
-                        View All Menu
+                    <a href="#more" class="px-8 py-3 bg-[#c8a98a] hover:bg-[#b59372] text-white text-[10px] font-bold uppercase tracking-[0.2em] rounded-sm transition-all text-center">
+                        CLICK TO READ MORE
                     </a>
                 </div>
-            </div>
-        </div>
 
-        {{-- Decorative Elements --}}
-        <div class="absolute top-0 right-0 w-64 h-64 opacity-5 pointer-events-none transform translate-x-1/2 -translate-y-1/2">
-            <img src="https://themesflat.co/html/restaurant/coffee/assets/images/bg/graphic-header.png" class="invert">
-        </div>
-    </section>
-
-    {{-- ═══ BOOK A TABLE SECTION (Heritage Overlay) ═══ --}}
-    <section class="relative py-40 overflow-hidden min-h-screen flex items-center">
-        {{-- Fixed Background Image --}}
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1550966841-3ee4ad00a0d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
-                 class="w-full h-full object-cover grayscale-[30%] brightness-[0.25]">
-            <div class="absolute inset-0 bg-forest/40"></div>
-        </div>
-
-        <div class="max-w-4xl mx-auto px-4 relative z-10 w-full animate-fade-in-up">
-            <div class="bg-forest-light/95 backdrop-blur-xl rounded-3xl p-8 md:p-20 border border-gold/30 shadow-4xl relative overflow-hidden">
-                {{-- Decorative Corner Accents --}}
-                <div class="absolute top-0 left-0 w-24 h-24 border-l-2 border-t-2 border-gold/40 rounded-tl-3xl"></div>
-                <div class="absolute bottom-0 right-0 w-24 h-24 border-r-2 border-b-2 border-gold/40 rounded-br-3xl"></div>
-
-                <div class="text-center mb-16">
-                    <div class="flex items-center justify-center gap-4 mb-4">
-                        <div class="h-[1px] w-12 bg-gold/40"></div>
-                        <span class="font-script text-gold text-4xl">Reservation</span>
-                        <div class="h-[1px] w-12 bg-gold/40"></div>
+                {{-- Right Side: Hours Block (Chalkboard Only) --}}
+                <div class="pt-12 lg:pt-0 flex justify-center lg:justify-end w-full">
+                    <style>@import url('https://fonts.googleapis.com/css2?family=Chilanka&family=Patrick+Hand&display=swap');</style>
+                    
+                    <div class="relative w-full max-w-[500px]">
+                        {{-- Chalkboard Inner Container --}}
+                        <div class="relative w-full bg-[#2a363b] rounded-sm py-6 px-10 shadow-2xl border-[6px] border-[#1d262a] overflow-hidden" style="background-image: url('https://www.transparenttextures.com/patterns/stucco.png');">
+                            
+                            {{-- Chalk Dust Smudge Effects --}}
+                            <div class="absolute inset-0 bg-white opacity-[0.02] pointer-events-none rounded-sm"></div>
+                            <div class="absolute top-12 left-6 w-20 h-16 bg-white rounded-full mix-blend-overlay filter blur-2xl opacity-10 transform -rotate-45 pointer-events-none"></div>
+                            <div class="absolute bottom-8 right-4 w-24 h-24 bg-white rounded-full mix-blend-overlay filter blur-3xl opacity-10 pointer-events-none"></div>
+                            
+                            <h3 class="text-white/90 font-bold text-2xl mb-6 text-center tracking-wide" style="font-family: 'Chilanka', cursive; text-shadow: 1px 1px 2px rgba(255,255,255,0.1);">Opening Hours</h3>
+                            
+                            <ul class="space-y-2" style="font-family: 'Patrick Hand', cursive; letter-spacing: 1.5px;">
+                                <li class="flex justify-between items-end text-[16px] text-white/80 border-b border-white/20 pb-1 border-dashed">
+                                    <span>Monday</span>
+                                    <span>7:00 - 21:00</span>
+                                </li>
+                                <li class="flex justify-between items-end text-[16px] text-white/80 border-b border-white/20 pb-1 border-dashed">
+                                    <span>Tuesday</span>
+                                    <span>7:00 - 21:00</span>
+                                </li>
+                                <li class="flex justify-between items-end text-[16px] text-white/80 border-b border-white/20 pb-1 border-dashed">
+                                    <span>Wednesday</span>
+                                    <span>7:00 - 21:00</span>
+                                </li>
+                                <li class="flex justify-between items-end text-[16px] text-white/80 border-b border-white/20 pb-1 border-dashed">
+                                    <span>Thursday</span>
+                                    <span>7:00 - 21:00</span>
+                                </li>
+                                <li class="flex justify-between items-end text-[16px] text-white/80 border-b border-white/20 pb-1 border-dashed">
+                                    <span>Friday</span>
+                                    <span>8:00 - 21:00</span>
+                                </li>
+                                <li class="flex justify-between items-end text-[16px] text-white/80 border-b border-white/20 pb-1 border-dashed">
+                                    <span>Saturday</span>
+                                    <span>7:00 - 21:00</span>
+                                </li>
+                                <li class="flex justify-between items-end text-[16px] text-amber-300 pb-1 mt-2">
+                                    <span>Sunday</span>
+                                    <span class="uppercase">Closed</span>
+                                </li>
+                            </ul>
+                            
+                            {{-- Chalk underline decoration --}}
+                            <div class="mt-6 mx-auto w-3/4 h-[2px] bg-white/30 rounded-full" style="box-shadow: 0 1px 2px rgba(255,255,255,0.4);"></div>
+                        </div>
                     </div>
-                    <h2 class="font-heading text-white text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-wide heritage-heading">Book A Table</h2>
-                    <p class="text-white/40 text-[10px] font-heading font-bold uppercase tracking-[0.5em] mt-6">Taste the heritage, feel the luxury</p>
                 </div>
 
-                <form class="space-y-8">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {{-- Name --}}
-                        <div class="relative group">
-                            <input type="text" placeholder="Your Name" class="w-full reservation-input px-8 py-5 rounded-xl border-white/5 bg-white/5 focus:bg-white/10 [color-scheme:dark]">
-                            <i class="fa-solid fa-user absolute right-8 top-1/2 -translate-y-1/2 text-gold/20 group-focus-within:text-gold transition-colors"></i>
-                        </div>
-                        {{-- Phone --}}
-                        <div class="relative group">
-                            <input type="tel" placeholder="Phone Number" class="w-full reservation-input px-8 py-5 rounded-xl border-white/5 bg-white/5 focus:bg-white/10 [color-scheme:dark]">
-                            <i class="fa-solid fa-phone absolute right-8 top-1/2 -translate-y-1/2 text-gold/20 group-focus-within:text-gold transition-colors"></i>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {{-- Number of People --}}
-                        <div class="relative group">
-                            <select class="w-full reservation-input reservation-select px-8 py-5 rounded-xl border-white/5 bg-white/5 focus:bg-white/10 [color-scheme:dark]">
-                                <option value="" disabled selected>Dining Party</option>
-                                <option value="1">1 Person</option>
-                                <option value="2">2 People</option>
-                                <option value="4">4 People</option>
-                                <option value="6">6+ People</option>
-                            </select>
-                        </div>
-                        {{-- Date --}}
-                        <div class="relative group">
-                            <input type="date" class="w-full reservation-input px-8 py-5 rounded-xl border-white/5 bg-white/5 focus:bg-white/10 [color-scheme:dark]">
-                        </div>
-                        {{-- Time --}}
-                        <div class="relative group">
-                            <select class="w-full reservation-input reservation-select px-8 py-5 rounded-xl border-white/5 bg-white/5 focus:bg-white/10 [color-scheme:dark]">
-                                <option value="" disabled selected>Select Time</option>
-                                <option value="18:00">06:00 PM</option>
-                                <option value="19:00">07:00 PM</option>
-                                <option value="20:00">08:00 PM</option>
-                                <option value="21:00">09:00 PM</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    {{-- Message --}}
-                    <div class="relative group">
-                        <textarea placeholder="Special Requests (Optional)" rows="4" class="w-full reservation-input px-8 py-5 rounded-xl border-white/5 bg-white/5 focus:bg-white/10 [color-scheme:dark] resize-none"></textarea>
-                    </div>
-
-                    <div class="text-center pt-6">
-                        <button type="submit" class="bg-gold hover:bg-gold-premium text-white font-heading font-bold uppercase tracking-[0.4em] text-[11px] px-20 py-6 transition-all shadow-gold/20 rounded-md hover:scale-105 active:scale-95 transform duration-300">
-                            Confirm Reservation
-                        </button>
-                    </div>
-                </form>
             </div>
         </div>
     </section>
-    {{-- ═══ CTA BANNER (Heritage Callout) ═══ --}}
-    <section class="relative py-24 overflow-hidden bg-paper border-t border-gold/10">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <div class="flex flex-col md:flex-row items-center justify-center gap-12 lg:gap-24">
-                <div class="text-left max-w-lg">
-                    <span class="font-script text-gold text-4xl mb-2 block">Join Our Club</span>
-                    <h2 class="font-heading text-forest-dark text-4xl font-bold uppercase tracking-tight leading-tight">Get Exclusive Offers <br>& Secret Recipes</h2>
-                </div>
+
+
+    {{-- RESERVATION CTA --}}
+    <section id="reservations" class="py-24 relative border-t border-[#e4decb]" style="background-color: #fdfbf7; background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                 
-                <div class="flex items-center gap-4 w-full max-w-md">
-                    <input type="email" placeholder="Enter your email" 
-                           class="flex-grow bg-white border border-gray-100 px-8 py-5 rounded-sm shadow-sm font-body text-sm focus:border-gold outline-none transition-all">
-                    <button class="bg-forest text-white font-heading font-bold uppercase tracking-widest text-[11px] px-10 py-5 rounded-sm hover:bg-gold transition-colors shadow-premium shrink-0">
-                        Subscribe
-                    </button>
+                {{-- Form Content Area --}}
+                <div class="order-2 lg:order-1 flex flex-col pt-8 lg:pt-0">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="w-2 h-2 rounded-full bg-[#c8a98a]"></span>
+                        <span class="text-[#c8a98a] font-bold text-[10px] tracking-widest uppercase">Book Online</span>
+                    </div>
+                    
+                    <h2 class="text-3xl md:text-5xl font-black text-[#2b2522] mb-6 uppercase tracking-tight" style="font-family: 'Oswald', sans-serif;">Reserve a Table</h2>
+                    
+                    <p class="text-[#666] text-sm md:text-base mb-10 max-w-lg leading-relaxed font-medium">
+                        Skip the line and reserve your table in advance. Whether it's an intimate dinner or a celebration, secure your spot today.
+                    </p>
+                    
+                    <form class="space-y-6 text-left w-full">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="flex flex-col">
+                                <label class="text-[#2b2522] text-[10px] font-bold uppercase tracking-[0.2em] mb-2">Name</label>
+                                <input type="text" class="w-full px-4 py-3 bg-white border border-[#e4decb] text-[#2b2522] placeholder-[#a8a08d] rounded-sm focus:border-[#c8a98a] focus:bg-[#fcfaf5] focus:ring-0 outline-none transition-all shadow-sm" placeholder="Jane Doe">
+                            </div>
+                            <div class="flex flex-col">
+                                <label class="text-[#2b2522] text-[10px] font-bold uppercase tracking-[0.2em] mb-2">Phone</label>
+                                <input type="tel" class="w-full px-4 py-3 bg-white border border-[#e4decb] text-[#2b2522] placeholder-[#a8a08d] rounded-sm focus:border-[#c8a98a] focus:bg-[#fcfaf5] focus:ring-0 outline-none transition-all shadow-sm" placeholder="+1 (555) 000-0000">
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                            <div class="flex flex-col">
+                                <label class="text-[#2b2522] text-[10px] font-bold uppercase tracking-[0.2em] mb-2">Date</label>
+                                <div class="relative">
+                                    <input type="date" class="w-full px-4 py-3 bg-white border border-[#e4decb] text-[#2b2522] rounded-sm focus:border-[#c8a98a] focus:bg-[#fcfaf5] focus:ring-0 outline-none transition-all shadow-sm appearance-none" style="font-family: 'Playfair Display', serif;">
+                                </div>
+                            </div>
+                            <div class="flex flex-col">
+                                <label class="text-[#2b2522] text-[10px] font-bold uppercase tracking-[0.2em] mb-2">Time</label>
+                                <div class="relative">
+                                    <input type="time" class="w-full px-4 py-3 bg-white border border-[#e4decb] text-[#2b2522] rounded-sm focus:border-[#c8a98a] focus:bg-[#fcfaf5] focus:ring-0 outline-none transition-all shadow-sm appearance-none" value="19:00" style="font-family: 'Playfair Display', serif;">
+                                </div>
+                            </div>
+                            <div class="flex flex-col">
+                                <label class="text-[#2b2522] text-[10px] font-bold uppercase tracking-[0.2em] mb-2">Guests</label>
+                                <select class="w-full px-4 py-3 bg-white border border-[#e4decb] text-[#2b2522] rounded-sm focus:border-[#c8a98a] focus:bg-[#fcfaf5] focus:ring-0 outline-none transition-all shadow-sm appearance-none cursor-pointer" style="font-family: 'Playfair Display', serif;">
+                                    <option value="1">1 Person</option>
+                                    <option value="2" selected>2 People</option>
+                                    <option value="3">3 People</option>
+                                    <option value="4">4 People</option>
+                                    <option value="5">5+ People</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-10 pt-4">
+                            <button type="submit" class="w-full sm:w-auto px-10 py-4 bg-[#2b2522] hover:bg-[#1a1614] text-[#ede8dc] text-[11px] font-bold uppercase tracking-[0.2em] rounded-sm transition-all shadow-md hover:shadow-xl transform hover:-translate-y-0.5 text-center flex justify-center items-center gap-2">
+                                Confirm Booking
+                            </button>
+                        </div>
+                    </form>
                 </div>
+
+                {{-- Elegant Image Presentation --}}
+                <div class="order-1 lg:order-2 w-full flex justify-center lg:justify-end border-8 border-white shadow-2xl rounded-sm transform lg:-rotate-2 rotate-0 transition-transform hover:rotate-0 duration-700 max-w-lg mx-auto lg:max-w-none">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop" class="w-full h-[400px] lg:h-[500px] object-cover rounded-sm" alt="Restaurant Ambiance">
+                </div>
+
             </div>
         </div>
     </section>
+
 </div>
