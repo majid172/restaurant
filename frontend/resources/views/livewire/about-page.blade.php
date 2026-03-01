@@ -76,7 +76,7 @@
     </section>
 
     {{-- ═══ OUR VALUES ═══ --}}
-    <section class="py-32 bg-white relative overflow-hidden">
+    <section class="py-32 bg-paper bg-cream relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 relative z-10">
             <div class="text-center mb-20 animate-fade-in-up">
                 <span class="font-script text-gold text-4xl mb-2 block">What Drives Us</span>
@@ -89,8 +89,8 @@
                     ['icon' => 'fa-leaf', 'title' => 'Authenticity', 'desc' => 'We stay true to traditional Indian cooking methods while embracing modern presentation. Our spices are sourced directly from India.'],
                     ['icon' => 'fa-users', 'title' => 'Community', 'desc' => 'Love Curry is more than a restaurant — it\'s a gathering place for friends and families. We treat every guest like a member of our own family.']
                 ] as $value)
-                    <div class="bg-cream rounded-2xl p-10 text-center hover:shadow-premium transition-all duration-500 border border-gold/10 hover:-translate-y-2 group">
-                        <div class="w-20 h-20 bg-white shadow-sm rounded-full flex items-center justify-center mx-auto mb-8 group-hover:bg-gold transition-colors duration-500 border border-gold/20">
+                    <div class="bg-white rounded-2xl p-10 text-center hover:shadow-premium transition-all duration-500 border border-gold/10 hover:-translate-y-2 group">
+                        <div class="w-20 h-20 bg-cream shadow-sm rounded-full flex items-center justify-center mx-auto mb-8 group-hover:bg-gold transition-colors duration-500 border border-gold/20">
                             <i class="fa-solid {{ $value['icon'] }} text-3xl text-gold group-hover:text-white transition-colors duration-500"></i>
                         </div>
                         <h3 class="font-heading text-2xl font-bold uppercase text-forest-dark tracking-widest mb-4 group-hover:text-gold transition-colors">{{ $value['title'] }}</h3>

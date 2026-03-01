@@ -17,7 +17,17 @@ class HeroSlide extends Model
     public function getLocalized(string $field, ?string $locale = null): string
     {
         $locale = $locale ?? app()->getLocale();
-        $data = $this->$field;
+        $data = $this->$field ?? [];
         return $data[$locale] ?? $data['en'] ?? '';
+    }
+
+    public function getFrontendImageUrlAttribute(): string
+    {
+        if (empty($this->image_path)) {
+            return '';
+        }
+        
+        $backendUrl = env('BACKEND_URL', 'http://localhost:8000');
+        return rtrim($backendUrl, '/') . '/storage/' . ltrim($this->image_path, '/');
     }
 }
