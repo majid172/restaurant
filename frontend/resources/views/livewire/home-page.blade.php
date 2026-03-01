@@ -176,11 +176,11 @@
     </section>
 
     {{-- CHEF'S SPECIALS (SIGNATURE DISHES) --}}
-    <section class="py-16 relative border-t border-[#e4decb]" style="background-color: #fdfbf7; background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');">
+    <section class="py-24 relative border-t border-[#e4decb]" style="background-color: #fdfbf7; background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
                 <div>
-                    <h2 class="text-3xl md:text-5xl font-black text-[#2b2522] mb-2 uppercase tracking-tight" style="font-family: 'Oswald', sans-serif;">Chef's Signatures</h2>
+                    <h2 class="text-3xl md:text-5xl font-black text-[#2b2522] mb-4 uppercase tracking-tight" style="font-family: 'Oswald', sans-serif;">Chef's Signatures</h2>
                     <p class="text-[#666] text-sm md:text-base max-w-xl font-medium tracking-wide">Carefully curated dishes that represent the pinnacle of our culinary expertise.</p>
                 </div>
                 <a href="/menu" class="hidden md:inline-flex items-center gap-2 text-[#c8a98a] font-bold uppercase tracking-widest text-xs hover:text-[#b59372] transition rounded-sm border-b-2 border-transparent hover:border-[#c8a98a] pb-1">
@@ -188,64 +188,96 @@
                 </a>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                
-                {{-- Dish 1 --}}
-                <div class="flex flex-col sm:flex-row gap-4 p-4 rounded-sm bg-white hover:bg-[#fcfaf5] border border-[#e4decb] hover:border-[#c8a98a]/50 shadow-sm hover:shadow-lg transition-all duration-300 group items-center">
-                    <div class="w-full sm:w-28 h-28 rounded-sm overflow-hidden shrink-0 shadow-md border border-[#e4decb]">
-                        <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out">
-                    </div>
-                    <div class="flex flex-col justify-center flex-grow w-full">
-                        <div class="flex justify-between items-center mb-0 border-b border-dashed border-[#e4decb] pb-2">
-                            <h4 class="text-lg font-bold text-[#2b2522]" style="font-family: 'Oswald', sans-serif;">Chicken Tikka Masala</h4>
-                            <span class="text-lg font-extrabold text-[#c8a98a]" style="font-family: 'Playfair Display', serif;">$25.00</span>
-                        </div>
+            {{-- Interactive Magazine Book Spread --}}
+            <div x-data="{ 
+                page: 0, 
+                maxPage: 3,
+                dishes: [
+                    { name: 'Chicken Tikka Masala', price: '$25.00', desc: 'Roasted marinated chicken chunks served in a spiced, perfectly creamy and rich tomato sauce.', img: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?q=80&w=800&auto=format&fit=crop' },
+                    { name: 'Stuffed Mushrooms', price: '$15.00', desc: 'Savory mushrooms filled with a delightful mix of panko, aromatic herbs, and melted artisan cheese.', img: 'https://images.unsplash.com/photo-1621852004158-f3bc188caa2d?q=80&w=800&auto=format&fit=crop' },
+                    { name: 'Palak Paneer', price: '$22.00', desc: 'Fresh pureed spinach blended with spices and soft, homemade cottage cheese cubes.', img: 'https://images.unsplash.com/photo-1601050633647-81a3cf8f0fba?q=80&w=800&auto=format&fit=crop' },
+                    { name: 'Tandoori Lamb Chops', price: '$34.00', desc: 'Succulent lamb chops marinated in yogurt, garlic, ginger, and our special tandoori spice blend, roasted to perfection.', img: 'https://images.unsplash.com/photo-1628294895950-9805252327bc?q=80&w=800&auto=format&fit=crop' }
+                ],
+                nextPage() { if (this.page < this.maxPage) this.page++; else this.page = 0; },
+                prevPage() { if (this.page > 0) this.page--; else this.page = this.maxPage; }
+            }" class="relative max-w-5xl mx-auto mt-8 md:mt-12">
+            
+                <div class="flex flex-col md:flex-row bg-[#fbfaf5] border border-[#e4decb] shadow-[0_20px_50px_rgba(0,0,0,0.1)] rounded-sm overflow-hidden relative min-h-[500px] md:min-h-[600px]" style="background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');">
+                    
+                    {{-- Center Fold Shadow (Desktop Only) --}}
+                    <div class="hidden md:block absolute inset-y-0 left-1/2 w-8 -translate-x-1/2 bg-gradient-to-r from-transparent via-black/10 to-transparent z-20 pointer-events-none"></div>
+
+                    {{-- LEFT PAGE (Image) --}}
+                    <div class="w-full md:w-1/2 relative overflow-hidden bg-[#2b2522]">
+                        <template x-for="(dish, index) in dishes" :key="index">
+                            <img :src="dish.img" 
+                                x-show="page === index"
+                                x-transition:enter="transition ease-out duration-700 transform"
+                                x-transition:enter-start="opacity-0 scale-105"
+                                x-transition:enter-end="opacity-100 scale-100"
+                                x-transition:leave="transition ease-in duration-500 absolute inset-0"
+                                x-transition:leave-start="opacity-100"
+                                x-transition:leave-end="opacity-0"
+                                class="w-full h-full object-cover">
+                        </template>
+                        {{-- Image Overlay / Border --}}
+                        <div class="absolute inset-0 border-[12px] border-[#fbfaf5]/10 pointer-events-none z-10"></div>
                         
-                    </div>
-                </div>
-
-                {{-- Dish 2 --}}
-                <div class="flex flex-col sm:flex-row gap-4 p-4 rounded-sm bg-white hover:bg-[#fcfaf5] border border-[#e4decb] hover:border-[#c8a98a]/50 shadow-sm hover:shadow-lg transition-all duration-300 group items-center">
-                    <div class="w-full sm:w-28 h-28 rounded-sm overflow-hidden shrink-0 shadow-md border border-[#e4decb]">
-                        <img src="https://images.unsplash.com/photo-1621852004158-f3bc188caa2d?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out">
-                    </div>
-                    <div class="flex flex-col justify-center flex-grow w-full">
-                        <div class="flex justify-between items-center mb-0 border-b border-dashed border-[#e4decb] pb-2">
-                            <h4 class="text-lg font-bold text-[#2b2522]" style="font-family: 'Oswald', sans-serif;">Stuffed Mushrooms</h4>
-                            <span class="text-lg font-extrabold text-[#c8a98a]" style="font-family: 'Playfair Display', serif;">$15.00</span>
+                        {{-- Navigation Arrows (Mobile Overlaid) --}}
+                        <div class="md:hidden absolute inset-y-0 left-0 right-0 flex justify-between items-center px-4 z-30">
+                            <button @click="prevPage" class="w-10 h-10 rounded-full bg-white/80 text-[#2b2522] flex items-center justify-center hover:bg-[#c8a98a] hover:text-white transition shadow-lg backdrop-blur-sm">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+                            <button @click="nextPage" class="w-10 h-10 rounded-full bg-white/80 text-[#2b2522] flex items-center justify-center hover:bg-[#c8a98a] hover:text-white transition shadow-lg backdrop-blur-sm">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
                         </div>
-                       
                     </div>
-                </div>
 
-                {{-- Dish 3 --}}
-                <div class="flex flex-col sm:flex-row gap-4 p-4 rounded-sm bg-white hover:bg-[#fcfaf5] border border-[#e4decb] hover:border-[#c8a98a]/50 shadow-sm hover:shadow-lg transition-all duration-300 group items-center">
-                    <div class="w-full sm:w-28 h-28 rounded-sm overflow-hidden shrink-0 shadow-md border border-[#e4decb]">
-                        <img src="https://images.unsplash.com/photo-1601050633647-81a3cf8f0fba?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out">
-                    </div>
-                    <div class="flex flex-col justify-center flex-grow w-full">
-                        <div class="flex justify-between items-center mb-0 border-b border-dashed border-[#e4decb] pb-2">
-                            <h4 class="text-lg font-bold text-[#2b2522]" style="font-family: 'Oswald', sans-serif;">Palak Paneer Special</h4>
-                            <span class="text-lg font-extrabold text-[#c8a98a]" style="font-family: 'Playfair Display', serif;">$22.00</span>
-                        </div>
+                    {{-- RIGHT PAGE (Content) --}}
+                    <div class="w-full md:w-1/2 relative flex flex-col justify-center items-center p-10 md:p-16 text-center border-l border-[#e4decb]/30">
                         
-                    </div>
-                </div>
-
-                {{-- Dish 4 --}}
-                <div class="flex flex-col sm:flex-row gap-4 p-4 rounded-sm bg-white hover:bg-[#fcfaf5] border border-[#e4decb] hover:border-[#c8a98a]/50 shadow-sm hover:shadow-lg transition-all duration-300 group items-center">
-                    <div class="w-full sm:w-28 h-28 rounded-sm overflow-hidden shrink-0 shadow-md border border-[#e4decb]">
-                        <img src="https://images.unsplash.com/photo-1628294895950-9805252327bc?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out">
-                    </div>
-                    <div class="flex flex-col justify-center flex-grow w-full">
-                        <div class="flex justify-between items-center mb-0 border-b border-dashed border-[#e4decb] pb-2">
-                            <h4 class="text-lg font-bold text-[#2b2522]" style="font-family: 'Oswald', sans-serif;">Tandoori Lamb Chops</h4>
-                            <span class="text-lg font-extrabold text-[#c8a98a]" style="font-family: 'Playfair Display', serif;">$34.00</span>
+                        {{-- Page Number Indicator --}}
+                        <div class="absolute top-8 right-8 text-[#999] font-heading text-xs tracking-widest font-bold">
+                            <span x-text="page + 1"></span> / <span x-text="maxPage + 1"></span>
                         </div>
-                        
+
+                        <div class="mb-6 flex justify-center">
+                           <svg class="w-8 h-8 text-[#c8a98a] opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                        </div>
+
+                        <template x-for="(dish, index) in dishes" :key="index">
+                            <div x-show="page === index"
+                                x-transition:enter="transition ease-out duration-700 delay-100 transform"
+                                x-transition:enter-start="opacity-0 translate-y-4"
+                                x-transition:enter-end="opacity-100 translate-y-0"
+                                x-transition:leave="transition ease-in duration-300 absolute inset-y-0 left-0 right-0 flex flex-col justify-center items-center p-10 md:p-16"
+                                x-transition:leave-start="opacity-100 translate-y-0"
+                                x-transition:leave-end="opacity-0 -translate-y-4">
+                                
+                                <h4 class="text-3xl md:text-4xl font-black text-[#2b2522] mb-6 uppercase tracking-widest leading-tight" style="font-family: 'Oswald', sans-serif;" x-text="dish.name"></h4>
+                                
+                                <div class="flex items-center justify-center gap-4 w-full mb-8">
+                                    <div class="h-[1px] bg-[#e4decb] w-12"></div>
+                                    <span class="text-3xl font-extrabold text-[#c8a98a]" style="font-family: 'Playfair Display', serif;" x-text="dish.price"></span>
+                                    <div class="h-[1px] bg-[#e4decb] w-12"></div>
+                                </div>
+
+                                <p class="text-[#666] text-sm leading-loose max-w-sm mx-auto tracking-wide italic" x-text="dish.desc"></p>
+                            </div>
+                        </template>
+
+                        {{-- Navigation Arrows (Desktop Only) --}}
+                        <div class="hidden md:flex absolute bottom-10 left-0 right-0 justify-center items-center gap-6 z-30">
+                            <button @click="prevPage" class="w-12 h-12 rounded-full border border-[#e4decb] text-[#c8a98a] flex items-center justify-center hover:bg-[#c8a98a] hover:text-white hover:border-[#c8a98a] transition group">
+                                <i class="fa-solid fa-arrow-left transition-transform group-hover:-translate-x-1"></i>
+                            </button>
+                            <button @click="nextPage" class="w-12 h-12 rounded-full border border-[#e4decb] text-[#c8a98a] flex items-center justify-center hover:bg-[#c8a98a] hover:text-white hover:border-[#c8a98a] transition group">
+                                <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
-
             </div>
             
             <div class="mt-12 text-center md:hidden">

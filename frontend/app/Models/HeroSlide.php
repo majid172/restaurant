@@ -27,7 +27,6 @@ class HeroSlide extends Model
             return '';
         }
         
-        $backendUrl = env('BACKEND_URL', 'http://localhost:8000');
-        return rtrim($backendUrl, '/') . '/storage/' . ltrim($this->image_path, '/');
+        return asset('storage/' . ltrim($this->image_path, '/'));
     }
 }
